@@ -28,7 +28,7 @@ public class GestionClientes {
     public Response register(
     		@FormParam("cedula") String cedula,
     		@FormParam("correo") String correo,
-    		@FormParam("nombre") String nombre
+    		@FormParam("nombre") String nombre,
     		@FormParam("apellido") String apellido,
     		@FormParam("direccion") String direccion,
     		@FormParam("telefono") String telefono
@@ -43,7 +43,7 @@ public class GestionClientes {
             persona.setTelefono(telefono);
             
             try{
-    			String ok ="Se hizo bien";
+    			String ok ="Se registró un usuario con éxito";
                 personaFacade.create(persona);
                 return Response.ok(jsonb.toJson(ok)).
                 		header("Access-Control-Allow-Origin", "*")
