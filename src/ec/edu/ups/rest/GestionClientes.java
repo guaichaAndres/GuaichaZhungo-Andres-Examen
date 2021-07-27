@@ -22,7 +22,7 @@ public class GestionClientes {
 	private Persona persona;
 	
 	@POST
-    @Path("/registrar/")
+    @Path("/registrarCliente/")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     public Response register(

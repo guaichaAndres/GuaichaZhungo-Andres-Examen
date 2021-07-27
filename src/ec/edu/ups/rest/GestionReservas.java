@@ -1,8 +1,15 @@
 package ec.edu.ups.rest;
 
+import javax.ejb.EJB;
 import javax.ws.rs.Path;
 
-//@Path("/reservas/")
-public class GestionReservas {
+import ec.edu.ups.ejb.ReservaFacade;
 
+import ec.edu.ups.modelo.Reserva;
+
+@Path("/reserva/")
+public class GestionReservas {
+	@EJB
+    ReservaFacade reservasFacade;
+	private Reserva reserva;
 }
