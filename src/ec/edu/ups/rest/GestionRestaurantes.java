@@ -82,7 +82,7 @@ public class GestionRestaurantes {
                         .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
                         .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
             }else {
-                return Response.status(404).entity("El usuario no tiene ningun pedido").build();
+                return Response.status(404).entity("El usuario no tiene ninguna reserva").build();
             }
 
 
