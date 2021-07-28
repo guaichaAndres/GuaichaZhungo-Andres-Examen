@@ -36,8 +36,7 @@ public class GestionReservas {
     RestauranteFacade restauranteFacade;
 	private Restaurante restaurante;
 	
-	Date  fecha;
-	 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+	
 	 
 	 
 	@POST
@@ -47,7 +46,10 @@ public class GestionReservas {
     public Response register(
     		@FormParam("cedula") String cedula, 
     		@FormParam("nombre") String nombre, 
-    		@FormParam("numPersonas") int numPersonas
+    		@FormParam("numPersonas") int numPersonas,
+    		@FormParam("fecha") String fecha,
+    		@FormParam("hora") String hora
+
     		){
         Jsonb jsonb = JsonbBuilder.create();
         
@@ -67,7 +69,7 @@ public class GestionReservas {
                 
               
 
-                reserva = new Reserva(new Date(), numPersonas, persona, restaurante);
+                reserva = new Reserva(fecha,hora ,numPersonas, persona, restaurante);
                 reservasFacade.create(reserva);
                 restaurante.setMaxAforo(capacidad);
                 restauranteFacade.edit(restaurante);

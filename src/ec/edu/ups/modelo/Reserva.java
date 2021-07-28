@@ -17,8 +17,8 @@ public class Reserva {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date fecha;
+	private String fecha;
+	private String hora;
 	private int numPersonas;
 	
 	@JoinColumn(name = "fk_persona")
@@ -34,9 +34,10 @@ public class Reserva {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Reserva(Date fecha, int numPersonas,Persona persona, Restaurante restaurante) {
+	public Reserva(String fecha, String hora,int numPersonas,Persona persona, Restaurante restaurante) {
 		super();
 		this.fecha = fecha;
+		this.hora = hora;
 		this.numPersonas = numPersonas;
 		this.persona = persona;
 		this.restaurante = restaurante;
@@ -51,12 +52,22 @@ public class Reserva {
 
 
 
-	public Date getFecha() {
+	
+
+	public String getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
+	}
+
+	public String getHora() {
+		return hora;
+	}
+
+	public void setHora(String hora) {
+		this.hora = hora;
 	}
 
 	public int getNumPersonas() {

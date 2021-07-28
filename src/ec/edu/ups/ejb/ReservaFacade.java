@@ -1,5 +1,7 @@
 package ec.edu.ups.ejb;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,5 +21,11 @@ public class ReservaFacade extends AbstractFacade<Reserva> {
 	    protected EntityManager getEntityManager() {
 	        return em;
 	    }
-		
+	    
+	    public List<Reserva> buscarPorCodigo(int cedula) {
+			String jpql = "SELECT r FROM Reserva as r ";
+			List<Reserva> reserva = em.createQuery(jpql).getResultList();
+			System.out.println(reserva);
+			return reserva;
+		}
 }
