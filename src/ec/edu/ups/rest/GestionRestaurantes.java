@@ -92,6 +92,31 @@ public class GestionRestaurantes {
 	
 	}
 	
+	@GET
+    @Path("/reservaciones/{fecha}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response listarReservasFecha(@PathParam("fecha") String fecha) {
+        System.out.println(fecha);
+        try {
+            List<Reserva> reservas = new ArrayList<Reserva>();
+            Jsonb jsonb = JsonbBuilder.create();
+            reservas = reservaFacade.buscarPorFecha(fecha);
+           
+            
+            if(reservas.size()!=0) {
+                return Response.ok(jsonb.toJson(reservas))
+                        .header("Access-Control-Allow-Origin", "*")
+                        .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                        .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+            }else {
+                return Response.status(404).entity("El usuario no tiene ninguna reserva").build();
+            }
+
+
+        } catch (Exception e) {
+            return Response.status(404).entity("Usuario no encontrado").build();
+        }
 	
+	}
 	
 }
