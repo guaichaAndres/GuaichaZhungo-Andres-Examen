@@ -27,13 +27,12 @@ public class Restaurante {
 	}
 	
 	public Restaurante(String nombre, String direccion, String telefono,
-			int maxAforo, List<Reserva> reservas) {
+			int maxAforo) {
 		super();
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.telefono = telefono;
 		this.maxAforo = maxAforo;
-		this.reservas = reservas;
 	}
 	public int getId() {
 		return id;
@@ -77,6 +76,12 @@ public class Restaurante {
 
 	public void setReservas(List<Reserva> reservas) {
 		this.reservas = reservas;
+	}
+
+	@Override
+	public String toString() {
+		return "Restaurante [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono=" + telefono
+				+ ", maxAforo=" + maxAforo + ", reservas=" + reservas + "]";
 	}
 	
 	

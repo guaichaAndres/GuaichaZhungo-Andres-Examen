@@ -19,5 +19,16 @@ public class RestauranteFacade extends AbstractFacade<Restaurante> {
 	    protected EntityManager getEntityManager() {
 	        return em;
 	    }
+	    
+	    public Restaurante buscarRestaurantePorNombre(String nombre) {
+			try {
+				String jpql = "SELECT res FROM Restaurante res WHERE res.nombre="+"'"+ nombre+"'";
+				Restaurante per = (Restaurante) em.createQuery(jpql).getSingleResult();
+				return per;
+			} catch (Exception e) {
+
+				return null;
+			}
+		}
 		
 }

@@ -27,7 +27,7 @@ public class Persona {
 	}
 
 	public Persona(String cedula,String nombre, String apellido, String correo, String direccion, 
-			String telefono, List<Reserva> reservas) {
+			String telefono) {
 		super();
 		this.cedula= cedula;
 		this.nombre = nombre;
@@ -35,7 +35,6 @@ public class Persona {
 		this.correo = correo;
 		this.direccion = direccion;
 		this.telefono = telefono;
-		this.reservas = reservas;
 		
 	
 	}
@@ -83,6 +82,12 @@ public class Persona {
 
 	public void setReservas(List<Reserva> reservas) {
 		this.reservas = reservas;
+	}
+
+	@Override
+	public String toString() {
+		return "Persona [cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo
+				+ ", direccion=" + direccion + ", telefono=" + telefono + ", reservas=" + reservas + "]";
 	}
 
 	

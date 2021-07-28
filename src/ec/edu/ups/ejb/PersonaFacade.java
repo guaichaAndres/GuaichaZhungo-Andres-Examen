@@ -1,6 +1,5 @@
 package ec.edu.ups.ejb;
 
-import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -23,5 +22,13 @@ public class PersonaFacade extends AbstractFacade<Persona> {
 	        return em;
 	    }
 	  
-		
+	    public Persona buscarCliente(String cedula) {
+			try {
+				String jpql = "SELECT per FROM Persona per WHERE per.cedula="+"'"+cedula+"'";
+				Persona per = (Persona) em.createQuery(jpql).getSingleResult();
+				return per;
+			} catch (Exception e) {
+				return null;
+			}
+		}
 }
