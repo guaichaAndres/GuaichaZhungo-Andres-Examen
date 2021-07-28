@@ -22,8 +22,22 @@ public class ReservaFacade extends AbstractFacade<Reserva> {
 	        return em;
 	    }
 	    
-	    public List<Reserva> buscarPorCodigo(int cedula) {
-			String jpql = "SELECT r FROM Reserva as r ";
+	    public List<Reserva> buscarPorCodigo(String cedula) {
+			String jpql = "SELECT r FROM Reserva as r WHERE r.persona.cedula = "  + "'"+cedula +"'"  ;
+			List<Reserva> reserva = em.createQuery(jpql).getResultList();
+			System.out.println(reserva);
+			return reserva;
+		}
+	    
+	    public List<Reserva> buscarPorNombre(String nombre) {
+			String jpql = "SELECT r FROM Reserva as r WHERE r.restaurante.nombre = "  + "'"+nombre +"'"  ;
+			List<Reserva> reserva = em.createQuery(jpql).getResultList();
+			System.out.println(reserva);
+			return reserva;
+		}
+	    
+	    public List<Reserva> buscarPorFecha(String fecha) {
+			String jpql = "SELECT r FROM Reserva as r WHERE r.fecha = "  + "'"+fecha+"'"  ;
 			List<Reserva> reserva = em.createQuery(jpql).getResultList();
 			System.out.println(reserva);
 			return reserva;

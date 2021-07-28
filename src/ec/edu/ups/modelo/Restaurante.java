@@ -2,6 +2,7 @@ package ec.edu.ups.modelo;
 
 import java.util.List;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,6 +19,7 @@ public class Restaurante {
 	private String direccion;
 	private String telefono;
 	private int maxAforo;
+	@JsonbTransient
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
 	private List<Reserva> reservas;
 	
@@ -81,7 +83,7 @@ public class Restaurante {
 	@Override
 	public String toString() {
 		return "Restaurante [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono=" + telefono
-				+ ", maxAforo=" + maxAforo + ", reservas=" + reservas + "]";
+				+ ", maxAforo=" + maxAforo  + "]";
 	}
 	
 	

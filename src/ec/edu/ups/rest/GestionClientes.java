@@ -71,15 +71,13 @@ public class GestionClientes {
 	@GET
     @Path("/reservas/{cedula}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response listarProductos(@PathParam("cedula") String cedula) {
+    public Response listarReservasCedula(@PathParam("cedula") String cedula) {
         System.out.println(cedula);
         try {
             List<Reserva> reservas = new ArrayList<Reserva>();
             Persona cli = new Persona();
             Jsonb jsonb = JsonbBuilder.create();
-            reservas = reservaFacade.buscarPorCodigo(Integer.parseInt(cedula));
-           
-            
+            reservas = reservaFacade.buscarPorCodigo(cedula);  
             if(reservas.size()!=0) {
                 return Response.ok(jsonb.toJson(reservas))
                         .header("Access-Control-Allow-Origin", "*")
