@@ -94,5 +94,30 @@ public class GestionClientes {
 	
 	}
 	
+	@GET
+    @Path("/existeCliente/{cedula}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response existeCliente(@PathParam("cedula") String cedula) {
+        System.out.println(cedula);
+        try {
+            Persona cli = new Persona();
+            Jsonb jsonb = JsonbBuilder.create();
+            cli = personaFacade.buscarCliente(cedula);
+           String respuesta="true";
+            if(cli != null) {
+                return Response.ok(jsonb.toJson(respuesta))
+                        .header("Access-Control-Allow-Origin", "*")
+                        .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                        .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+            }else {
+                return Response.status(404).entity("El usuario no existe").build();
+            }
+
+
+        } catch (Exception e) {
+            return Response.status(404).entity("Usuario no encontrado").build();
+        }
+	
+	}
 	
 }

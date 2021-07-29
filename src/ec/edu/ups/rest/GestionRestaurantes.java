@@ -119,4 +119,30 @@ public class GestionRestaurantes {
 	
 	}
 	
+	@GET
+    @Path("/existeRestaurante/{nombre}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response existeCliente(@PathParam("nombre") String nombre) {
+        System.out.println(nombre);
+        try {
+            Restaurante res = new Restaurante();
+            Jsonb jsonb = JsonbBuilder.create();
+            res = restauranteFacade.buscarRestaurantePorNombre(nombre);
+           String respuesta="true";
+            if(res != null) {
+                return Response.ok(jsonb.toJson(respuesta))
+                        .header("Access-Control-Allow-Origin", "*")
+                        .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                        .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+            }else {
+                return Response.status(404).entity("El restaurante no existe").build();
+            }
+
+
+        } catch (Exception e) {
+            return Response.status(404).entity("Restaurante no encontrado").build();
+        }
+	
+	}
+	
 }
