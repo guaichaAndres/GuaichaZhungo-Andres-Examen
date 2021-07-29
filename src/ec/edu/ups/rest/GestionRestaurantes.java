@@ -68,7 +68,7 @@ public class GestionRestaurantes {
 	@GET
     @Path("/reservas/{nombreRestaurante}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response listarReservasNombre(@PathParam("nombre") String nombre) {
+    public Response listarReservasNombre(@PathParam("nombreRestaurante") String nombre) {
         System.out.println(nombre);
         try {
             List<Reserva> reservas = new ArrayList<Reserva>();
